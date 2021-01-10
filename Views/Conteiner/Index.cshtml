@@ -1,0 +1,88 @@
+﻿@model IEnumerable<T2S.Models.Conteiner>
+@{
+    ViewBag.Title = "teste";
+}
+<div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
+    <div class="col">
+        <div class="card mb-6 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 fw-normal">Conteiner</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/conteiner/create">
+                    <label for="Nome" class="visually-hidden">Cliente</label>
+                    <input type="text" id="Cliente" name="Cliente" class="form-control" placeholder="Cliente" required="" maxlength="20" pattern="[A-Za-z0-9]{1}[A-Za-z0-9 ]{19}" title="Apenas de 1 até 20 letras, números ou espaçamentos são aceitos.">
+                    <br />
+                    <label for="CNTR" class="visually-hidden">CNTR</label>
+                    <input type="text" id="CNTR" name="CNTR" class="form-control" placeholder="CNTR" required="" maxlength="11" pattern="[A-Za-z]{4}[0-9]{7}">
+                    <br />
+                    <select class="form-select" id="ConteinerTipo" name="ConteinerTipo" aria-label="Tipo">
+                        foreach (var pessoa in Model)
+                        {
+                        <option value="pessoa.id">pessoa.nome</option>
+                        }
+                    </select>
+                    <br />
+                    <select class="form-select" id="ConteinerStatus" name="ConteinerTipo" aria-label="Status">
+                        foreach (var pessoa in Model)
+                        {
+                        <option value="pessoa.id">pessoa.nome</option>
+                        }
+                    </select>
+                    <br />
+                    <select class="form-select" id="ConteinerCategoria" name="ConteinerCategoria" aria-label="Categoria">
+                        foreach (var pessoa in Model)
+                        {
+                        <option value="pessoa.id">pessoa.nome</option>
+                        }
+                    </select>
+                    <br />
+                    <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mb-6 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 fw-normal">Objeto</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/objeto/create">
+                    <label for="Pessoa" class="visually-hidden">Pessoa</label>
+                    <select class="form-select" id="Pessoa" name="Pessoa" aria-label="Pessoa">
+                        foreach (var pessoa in Model)
+                        {
+                        <option value="pessoa.id">pessoa.nome</option>
+                        }
+                    </select>
+                    <br />
+                    <label for="Objeto" class="visually-hidden">Objeto</label>
+                    <input type="text" id="Objeto" name="Objeto" class="form-control" placeholder="Objeto" required="">
+                    <br />
+                    <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table id="relat" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Nome</td>
+            <td>Telefone</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pessoa in Model)
+        {
+            <tr>
+                <td>pessoa.id</td>
+                <td>pessoa.nome</td>
+                <td>pessoa.telefone</td>
+            </tr>
+        }
+    </tbody>
+</table>
